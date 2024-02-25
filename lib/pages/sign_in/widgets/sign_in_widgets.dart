@@ -31,6 +31,7 @@ Widget buildThirdPartyLgin(BuildContext context) {
       top: 40.h,
       bottom: 20.h,
     ),
+    padding: const EdgeInsets.only(left: 25, right: 25),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
@@ -75,7 +76,7 @@ Widget buildTextField(String hintText, String textType, String iconName) {
     decoration: BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.all(Radius.circular(15.w)),
-      border: Border.all(color: Colors.black),
+      border: Border.all(color: AppColors.primaryFourthElementText),
     ),
     child: Row(
       children: [
@@ -100,12 +101,12 @@ Widget buildTextField(String hintText, String textType, String iconName) {
                   borderSide: BorderSide(color: Colors.transparent)),
               focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent)),
-              hintStyle: TextStyle(
-                color: Colors.grey.withOpacity(0.5),
+              hintStyle: const TextStyle(
+                color: AppColors.primarySecondaryElementText,
               ),
             ),
             style: TextStyle(
-              color: Colors.black,
+              color: AppColors.primaryText,
               fontFamily: "Avenir",
               fontWeight: FontWeight.normal,
               fontSize: 14.sp,
@@ -129,8 +130,9 @@ Widget forgotPassword() {
       child: Text(
         "Forgot Password?",
         style: TextStyle(
-            color: Colors.black,
+            color: AppColors.primaryText,
             decoration: TextDecoration.underline,
+            decorationColor: AppColors.primaryText,
             fontSize: 12.sp),
       ),
     ),
@@ -151,9 +153,10 @@ Widget buildLoginAndRegButton(String buttonName, String buttonType) {
             : AppColors.primaryBackground,
         borderRadius: BorderRadius.circular(15.w),
         border: Border.all(
+            // check for registration button border color
             color: buttonType == "login"
                 ? Colors.transparent
-                : AppColors.primaryFourElementText),
+                : AppColors.primaryFourthElementText),
         boxShadow: [
           BoxShadow(
             spreadRadius: 1,
