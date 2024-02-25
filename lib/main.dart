@@ -1,6 +1,7 @@
 import 'package:courseapp/app_blocs.dart';
 import 'package:courseapp/app_events.dart';
 import 'package:courseapp/app_states.dart';
+import 'package:courseapp/pages/sign_in/sign_in.dart';
 import 'package:courseapp/pages/welcome/bloc/welcome_bloc.dart';
 import 'package:courseapp/pages/welcome/welcome.dart';
 import 'package:flutter/material.dart';
@@ -26,9 +27,18 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: ScreenUtilInit(
-        builder: (context, child) => const MaterialApp(
+        builder: (context, child) => MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: Welcome(),
+          theme: ThemeData(
+              appBarTheme: const AppBarTheme(
+            elevation: 0,
+            backgroundColor: Colors.white,
+          )),
+          home: const Welcome(),
+          routes: {
+            "myHomePage": (context) => const MyHomePage(),
+            "signIn": (context) => const SignIn(),
+          },
         ),
       ),
     );

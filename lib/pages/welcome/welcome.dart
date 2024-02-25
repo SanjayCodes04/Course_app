@@ -122,8 +122,11 @@ class _WelcomeState extends State<Welcome> {
                   duration: const Duration(milliseconds: 500),
                   curve: Curves.easeIn);
             } else {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const MyHomePage()));
+              // jumps to new page
+              // Navigator.of(context).push(
+              //     MaterialPageRoute(builder: (context) => const MyHomePage()));
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil("signIn", (route) => false);
             }
           },
           child: Container(
