@@ -1,3 +1,4 @@
+import 'package:courseapp/common/widgets/flutter_toast.dart';
 import 'package:courseapp/pages/sign_in/bloc/sing_in_blocs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,14 +18,15 @@ class SignInController {
         String emailAddress = state.email;
         String password = state.password;
 
-        // checking ig the email and password is empty
+        // checking if the email and password is empty
         if (emailAddress.isEmpty) {
-          //
-          print("Email Empty");
+          toastInfo(msg: "Your need to fill your email address");
+          return;
         }
         if (password.isEmpty) {
           //
-          print("Password Empty");
+          toastInfo(msg: "You need to fill your password ");
+          return;
         }
 
         /**try and catch are used for error handling. The code inside the try block is attempted, and if any exceptions (errors) occur during the execution of this block, the program will jump to the catch block to handle the error.
@@ -46,12 +48,14 @@ class SignInController {
           // checking for the user
           if (credentials.user == null) {
             //
-            print("User does not exist");
+            toastInfo(msg: "You dont exist");
+            return;
           }
           // checking for the email verification
           if (!credentials.user!.emailVerified) {
             //
-            print("Not Verified");
+            toastInfo(msg: "You need to verify your email address");
+            return;
           }
 
           var user = credentials.user;
@@ -60,15 +64,19 @@ class SignInController {
             print("User exists");
           } else {
             //we have error getting user from firebase
-            print("No User");
+            toastInfo(msg: "Currently you're not a user of our app");
+            return;
           }
         } on FirebaseAuthException catch (e) {
-          if (e.code == "user-not-found") {
-            print("No user found for that email");
+          if (e.code == 'user-not-found') {
+            toastInfo(msg: "User not Found");
+            return;
           } else if (e.code == "wrong-password") {
-            print("Wrong password provided for that user");
+            toastInfo(msg: "Wrong password provided for that user");
+            return;
           } else if (e.code == "invalid-email") {
-            print("Your email format is worng");
+            toastInfo(msg: "Your email format is worng");
+            return;
           }
         }
       }
