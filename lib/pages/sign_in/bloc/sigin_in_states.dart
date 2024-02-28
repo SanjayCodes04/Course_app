@@ -6,7 +6,9 @@ class SignInState {
     this.password = "",
   });
 
+  /// if your classes or objects are immutable and you want to create a new objects based on that
   SignInState copyWith({
+    // optional named parameters
     String? email,
     String? password,
   }) {
