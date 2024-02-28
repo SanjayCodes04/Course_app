@@ -1,7 +1,9 @@
 import 'package:courseapp/app_blocs.dart';
 import 'package:courseapp/app_events.dart';
 import 'package:courseapp/app_states.dart';
+import 'package:courseapp/common/values/colors.dart';
 import 'package:courseapp/pages/bloc_provides.dart';
+import 'package:courseapp/pages/register/register.dart';
 import 'package:courseapp/pages/sign_in/bloc/sing_in_blocs.dart';
 import 'package:courseapp/pages/sign_in/sign_in.dart';
 import 'package:courseapp/pages/welcome/bloc/welcome_bloc.dart';
@@ -50,6 +52,7 @@ class MyApp extends StatelessWidget {
           /// This sets the overall theme for the app, specifically configuring the app bar to have no elevation and a white background.
           theme: ThemeData(
               appBarTheme: const AppBarTheme(
+            iconTheme: IconThemeData(color: AppColors.primaryText),
             elevation: 0,
             backgroundColor: Colors.white,
           )),
@@ -62,6 +65,7 @@ class MyApp extends StatelessWidget {
           routes: {
             "myHomePage": (context) => const MyHomePage(),
             "signIn": (context) => const SignIn(),
+            "register": (context) => const Register(),
           },
         ),
       ),
