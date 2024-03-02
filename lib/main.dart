@@ -2,6 +2,7 @@ import 'package:courseapp/app_blocs.dart';
 import 'package:courseapp/app_events.dart';
 import 'package:courseapp/app_states.dart';
 import 'package:courseapp/common/values/colors.dart';
+import 'package:courseapp/pages/application/application_page.dart';
 import 'package:courseapp/pages/bloc_provides.dart';
 import 'package:courseapp/pages/register/register.dart';
 import 'package:courseapp/pages/sign_in/bloc/sing_in_blocs.dart';
@@ -58,79 +59,15 @@ class MyApp extends StatelessWidget {
           )),
 
           /// home: const Welcome(),: This sets the initial route of the app to a widget named Welcome.
-          home: const Welcome(),
+          home: const ApplicationPage(),
 
           /// routes: {...},:
           /// Defines named routes for the app, associating route names with corresponding widgets.
           routes: {
-            "myHomePage": (context) => const MyHomePage(),
             "signIn": (context) => const SignIn(),
             "register": (context) => const Register(),
           },
         ),
-      ),
-    );
-  }
-}
-
-/// class MyHomePage extends StatelessWidget { const MyHomePage({super.key});:
-/// Defines a new widget named MyHomePage, which represents the main page of the app.
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-/*Inside build method of MyHomePage:
-
-Scaffold: Defines the basic structure of the screen, including an app bar and body.
-
-appBar: Configures the app bar with a specific background color and title.
-
-body: Contains a BlocBuilder, which is used to rebuild the UI in response to changes in the app's state.
-
-Inside the BlocBuilder, a Column is used to display a text widget and the current value of the counter obtained from the AppBlocs using BlocProvider.of<AppBlocs>(context).state.counter. */
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Built Using Bloc"),
-      ),
-      body: Center(
-        child: BlocBuilder<AppBlocs, AppStates>(
-          // blockbuilder is used to show the changes in the ui
-          builder: (context, state) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const Text(
-                  'You have pushed the button this many times:',
-                ),
-                Text(
-                  "${BlocProvider.of<AppBlocs>(context).state.counter}", // by this we can get access to the counter variable in the AppStates class.
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-              ],
-            );
-          },
-        ),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          FloatingActionButton(
-            heroTag: "heroTag1",
-            onPressed: () =>
-                BlocProvider.of<AppBlocs>(context).add(Increment()),
-            tooltip: "Increment",
-            child: const Icon(Icons.add),
-          ),
-          FloatingActionButton(
-            heroTag: "heroTag2",
-            onPressed: () =>
-                BlocProvider.of<AppBlocs>(context).add(Decrement()),
-            tooltip: "Decrement",
-            child: const Icon(Icons.remove),
-          ),
-        ],
       ),
     );
   }
