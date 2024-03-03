@@ -1,20 +1,9 @@
-import 'package:courseapp/app_blocs.dart';
-import 'package:courseapp/app_events.dart';
-import 'package:courseapp/app_states.dart';
+import 'package:courseapp/common/routes/routes.dart';
 import 'package:courseapp/common/values/colors.dart';
-import 'package:courseapp/pages/application/application_page.dart';
-import 'package:courseapp/pages/bloc_provides.dart';
-import 'package:courseapp/pages/register/register.dart';
-import 'package:courseapp/pages/sign_in/bloc/sing_in_blocs.dart';
-import 'package:courseapp/pages/sign_in/sign_in.dart';
-import 'package:courseapp/pages/welcome/bloc/welcome_bloc.dart';
-import 'package:courseapp/pages/welcome/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_core/firebase_core.dart';
-
-import 'app_states.dart';
 
 /// "Future<void> main() async {": This is the entry point of the Flutter application.
 /// The main function is asynchronous (async), and it returns a Future<void>.
@@ -42,7 +31,7 @@ class MyApp extends StatelessWidget {
     /// This wraps the entire application with multiple BLoC (Business Logic Component) providers using MultiBlocProvider.
     /// It also includes a ScreenUtilInit widget, which initializes the screen utility for responsive design.
     return MultiBlocProvider(
-      providers: AppBlocProviders.addBlocProviders,
+      providers: [...AppPages.allProviders(context)],
       child: ScreenUtilInit(
         /// <builder: (context, child) => MaterialApp(...),>: Inside ScreenUtilInit, this sets up a MaterialApp, which is a basic structure for a Flutter app.
         /// It provides theming, routing, and other configurations
@@ -52,21 +41,13 @@ class MyApp extends StatelessWidget {
           /// theme: ThemeData(appBarTheme: const AppBarTheme(elevation: 0, backgroundColor: Colors.white)),:
           /// This sets the overall theme for the app, specifically configuring the app bar to have no elevation and a white background.
           theme: ThemeData(
-              appBarTheme: const AppBarTheme(
-            iconTheme: IconThemeData(color: AppColors.primaryText),
-            elevation: 0,
-            backgroundColor: Colors.white,
-          )),
-
-          /// home: const Welcome(),: This sets the initial route of the app to a widget named Welcome.
-          home: const ApplicationPage(),
-
-          /// routes: {...},:
-          /// Defines named routes for the app, associating route names with corresponding widgets.
-          routes: {
-            "signIn": (context) => const SignIn(),
-            "register": (context) => const Register(),
-          },
+            appBarTheme: const AppBarTheme(
+              iconTheme: IconThemeData(color: AppColors.primaryText),
+              elevation: 0,
+              backgroundColor: Colors.white,
+            ),
+          ),
+          onGenerateRoute: AppPages.GenerateRouteSettings,
         ),
       ),
     );
