@@ -1,4 +1,6 @@
 import 'package:courseapp/common/routes/names.dart';
+import 'package:courseapp/pages/application/application_page.dart';
+import 'package:courseapp/pages/application/bloc/app_blocs.dart';
 import 'package:courseapp/pages/register/bloc/register_bloc.dart';
 import 'package:courseapp/pages/register/register.dart';
 import 'package:courseapp/pages/sign_in/bloc/sing_in_blocs.dart';
@@ -32,11 +34,11 @@ class AppPages {
           create: (_) => RegisterBlocs(),
         ),
       ),
-      // PageEntity(
-      //   route: AppRoutes.APPLICATION,
-      //   page: const Welcome(),
-      //   //bloc: BlocProvider(create: (_) => WelcomeBloc()),
-      // ),
+      PageEntity(
+        route: AppRoutes.APPLICATION,
+        page: const ApplicationPage(),
+        bloc: BlocProvider(create: (_) => AppBlocs()),
+      ),
     ];
   }
 
