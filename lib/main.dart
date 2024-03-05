@@ -1,20 +1,15 @@
 import 'package:courseapp/common/routes/routes.dart';
 import 'package:courseapp/common/values/colors.dart';
+import 'package:courseapp/global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 /// "Future<void> main() async {": This is the entry point of the Flutter application.
 /// The main function is asynchronous (async), and it returns a Future<void>.
 /// It is responsible for initializing the Flutter app and running it.
 Future<void> main() async {
-  /// "WidgetsFlutterBinding.ensureInitialized();": This line ensures that the necessary bindings for the Flutter widgets are initialized before the application starts.
-  WidgetsFlutterBinding.ensureInitialized();
-
-  /// <await Firebase.initializeApp();>: This line initializes Firebase.
-  /// It's an asynchronous operation, so it uses await to wait for Firebase to initialize before proceeding
-  await Firebase.initializeApp();
+  await Global.init();
 
   /// <runApp(const MyApp());>: This function call runs the Flutter application and specifies the root widget as an instance of the MyApp class.
   runApp(const MyApp());

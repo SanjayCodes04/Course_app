@@ -1,4 +1,6 @@
 import 'package:courseapp/common/values/colors.dart';
+import 'package:courseapp/common/values/constant.dart';
+import 'package:courseapp/global.dart';
 import 'package:courseapp/main.dart';
 import 'package:courseapp/pages/welcome/bloc/welcome_bloc.dart';
 import 'package:courseapp/pages/welcome/bloc/welcome_events.dart';
@@ -126,6 +128,8 @@ class _WelcomeState extends State<Welcome> {
               // jumps to new page
               // Navigator.of(context).push(
               //     MaterialPageRoute(builder: (context) => const MyHomePage()));
+              Global.storageService
+                  .setBool(AppConstants.STORAGE_DEVICE_OPEN_FIRST_TIME, true);
               Navigator.of(context)
                   .pushNamedAndRemoveUntil("/sign_in", (route) => false);
             }
