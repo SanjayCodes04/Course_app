@@ -1,4 +1,6 @@
+import 'package:courseapp/common/values/constant.dart';
 import 'package:courseapp/common/widgets/flutter_toast.dart';
+import 'package:courseapp/global.dart';
 import 'package:courseapp/pages/sign_in/bloc/sing_in_blocs.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -62,6 +64,8 @@ class SignInController {
           if (user != null) {
             //we got verified user from firebase
             print("User exist");
+            Global.storageService
+                .setString(AppConstants.STORAGE_USER_TOKEN_KEY, "1234567");
             Navigator.of(context)
                 .pushNamedAndRemoveUntil("/application", (route) => false);
           } else {
